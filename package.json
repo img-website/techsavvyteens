@@ -1,0 +1,24 @@
+{
+  "name": "techsavvyteens",
+  "version": "1.0.0",
+  "description": "Tech Savvy Teens — Hawaiʻi's intergenerational tech program. Static site built with Tailwind CSS v4.",
+  "private": true,
+  "scripts": {
+    "build": "tailwindcss -i ./src/tailwind.css -o ./assets/css/tailwind.css --minify",
+    "dev": "tailwindcss -i ./src/tailwind.css -o ./assets/css/tailwind.css --watch",
+    "serve": "npx --yes serve --no-clipboard -l 4321 .",
+    "start": "npm run dev"
+  },
+  "keywords": [
+    "tailwindcss",
+    "static-site",
+    "nonprofit",
+    "hawaii"
+  ],
+  "license": "UNLICENSED",
+  "type": "commonjs",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}

@@ -1,0 +1,5 @@
+# generated
+node_modules/
+
+# dev-only screenshot harness (run _look/build.ps1 to regenerate)
+_look/*.html

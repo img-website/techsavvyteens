@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Tech Savvy Teens">
+  <rect width="64" height="64" rx="14" fill="#fff"/>
+  <!-- the real mark: a green teen and a blue kupuna sharing one arch -->
+  <circle cx="26" cy="17" r="5.5" fill="#3c7d39"/>
+  <circle cx="41" cy="17" r="5.5" fill="#2f7090"/>
+  <path d="M12 50V37a14 14 0 0 1 28 0v6a5 5 0 0 0 10 0V37" fill="none" stroke="#3c7d39" stroke-width="6" stroke-linecap="square"/>
+  <path d="M50 37a14 14 0 0 0-9-13.2" fill="none" stroke="#2f7090" stroke-width="6" stroke-linecap="round"/>
+  <path d="M12 50h10" stroke="#3c7d39" stroke-width="6" stroke-linecap="square"/>
+  <path d="M44 50h10" stroke="#2f7090" stroke-width="6" stroke-linecap="square"/>
+</svg>
