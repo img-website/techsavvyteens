@@ -26,6 +26,14 @@
       });
     }
 
+    // Keep the browser chrome in step with the theme. The <head> ships a single
+    // white theme-color because light is the default; the OS-media variants it
+    // used to carry would have painted the chrome navy over a light page.
+    function syncChrome(isDark) {
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute("content", isDark ? "#08182a" : "#ffffff");
+    }
+
     function apply(mode) {
       document.documentElement.classList.toggle("dark", mode === "dark");
       try {
@@ -34,6 +42,7 @@
         /* storage blocked — the toggle still works for this page view */
       }
       sync();
+      syncChrome(mode === "dark");
     }
 
     toggles.forEach(function (btn) {
@@ -42,24 +51,13 @@
       });
     });
 
-    // Follow the OS until the visitor makes an explicit choice.
-    var os = window.matchMedia("(prefers-color-scheme: dark)");
-    var onOsChange = function (e) {
-      var stored = null;
-      try {
-        stored = localStorage.getItem("tst-theme");
-      } catch (err) {
-        /* ignore */
-      }
-      if (!stored) {
-        document.documentElement.classList.toggle("dark", e.matches);
-        sync();
-      }
-    };
-    if (os.addEventListener) os.addEventListener("change", onOsChange);
-    else if (os.addListener) os.addListener(onOsChange);
+    // No OS listener on purpose. Light is the default for every visitor
+    // regardless of their system setting; dark is opt-in through this toggle
+    // and is remembered from then on. Following the OS would otherwise flip
+    // someone into dark without them asking.
 
     sync();
+    syncChrome(current() === "dark");
   }
 
   /* --------------------------------------------------- scroll reveal ----- */

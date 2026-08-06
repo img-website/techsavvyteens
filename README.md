@@ -21,34 +21,103 @@ npm run serve     # static server on http://localhost:4321
 | `about.html` | Ka Piko — the origin, co-founder, what teens do/teach, award, press |
 | `for-opio.html` | Recruitment: $50/session, 30 hrs → free certification, the crew |
 | `for-kupuna.html` | What we help with, 2026 events, book a workshop, video, host-us CTA |
+| `book.html` | Booking. Step 1 date + time, step 2 location, then the cart drawer. `?service=senior\|community` |
 | `blog.html` | News & media |
 | `donate.html` | Donate + contact form |
 | `privacy-policy.html` | Placeholder (see note below) |
 | `terms-and-conditions.html` | Placeholder (see note below) |
 | `404.html` | Not found. Uses root-relative asset paths so it survives a miss at any depth. |
 
-## Colour system
+## Brand system
 
-**The palette is the logo.** The Tech Savvy Teens mark is two-tone: a **green** figure and main arch (and the "TECHSAVVY" wordmark), plus a **blue** second figure and arch. Green leads, blue is secondary.
+Everything below comes from **Tech Savvy Teens Brand Guidelines 2026** (Kaulike Academy).
+It is the source of truth. Where this build previously guessed — the palette was sampled
+off a photo of a printed banner, and the logo was a repainted monochrome silhouette —
+the guessing has been removed.
 
-| Ramp | Share | Used for |
+### Colour
+
+| Role | Name | Hex |
 |---|---|---|
-| `--brand-*` (logo green, hue ~116) | ~91% | everything — headings, icons, hero bands, links |
-| `--accent-*` (logo blue, hue ~200) | ~9% | conversion CTAs (Support TST, Donate, Apply Now) + accents |
+| Primary | White | `#FFFFFF` |
+| Primary | Forest Green | `#208339` |
+| Primary | Deep Azure Blue | `#185FA5` |
+| Secondary | Cerulean | `#01718D` |
+| Secondary | Vivid Azure | `#2AC7FB` |
+| Secondary | Malachite | `#3ACF5F` |
 
-The hues were sampled off the roll-up banner in `IMG_7026` at full resolution — it's a photo of a printed banner under indoor light, so it reads washed out (`#71B26D` / `#63A2C0`); those values sit at the `400` step and the ramps are built around them at the same hues.
+Mapped onto two ramps, each built at its brand colour's exact hue with the published hex
+pinned to a named step so the real value appears literally on the page:
 
-> **Note on the logo file.** The live site only ever shipped `WebStatsTSTLogo.png`, a **white monochrome** silhouette — there is no full-colour logo asset on it, which is why the colours had to come off a photo. `tst-logo-dark.png` is that silhouette repainted in the wordmark green (`#3c7d39`); `tst-logo-light.png` is the original white, for the dark theme. The favicon is drawn two-tone. If a proper full-colour vector turns up, drop it in and delete the repaint step.
->
-> Do **not** take the palette from the old site's CSS — that stylesheet is all blue (`#185FA5`), which does not match the actual brand mark.
+| Ramp | Brand colour | Pinned at | Used for |
+|---|---|---|---|
+| `--brand-*` | Deep Azure Blue, hue 210 | `700` | structure — hero bands, header, links, primary buttons |
+| `--accent-*` | Forest Green, hue 135 | `600` | emphasis — highlighted words, "Free" badges, Support TST / Donate |
+
+Blue leads because it is what the logomark is drawn in, what every band and header in the
+brand deck is set in, and what the old site's chrome used. Green is the co-primary: it
+sets "TECHSAVVY" in the mark and the section headings in the deck, so it carries emphasis
+and conversion here. The three secondary colours are flat tokens (`text-cerulean`,
+`bg-azure`, `text-malachite`), not ramps — use them sparingly, as accents.
+
+> **One error in the source document.** The swatch labelled **"Vivid Green"** on the
+> palette page carries `#A0522D`, which is a sienna brown — both the printed hex and the
+> swatch fill. Every other swatch is self-consistent. It is almost certainly a
+> placeholder the designer forgot to replace, so it is **not** implemented; Malachite
+> `#3ACF5F` is used wherever a vivid green is called for. Worth confirming with the
+> client before any print work goes out.
+
+### Typography
+
+| Face | Role | Weights |
+|---|---|---|
+| **Anton** | Headlines, all caps | 400 only |
+| **Poppins** | H2 and body copy | 400, 700 |
+
+`font-display` is Anton and is applied to `h1`/`h2` only. The class also forces
+`font-weight: 400` and `text-transform: uppercase`, because Anton ships a single weight
+and the book specifies all caps — a synthesised bold smears the letterforms. Everything
+else (h3 and below, eyebrows, buttons, badges, body) is Poppins and needs no class at all.
+
+Both faces are self-hosted from `assets/fonts` in `latin` **and** `latin-ext` subsets.
+Both subsets are required: `latin` carries the ʻokina (U+02BB), `latin-ext` carries the
+macrons (ā ē ī ō ū). Drop either and "kūpuna" or "Hawaiʻi" breaks.
+
+### Logo
+
+Three approved lockups, extracted from the brand deck and shipped in
+`assets/images/logos`: `tst-logo-primary` (stacked), `tst-logo-horizontal` (the secondary
+lockup — this is what the header and footer use, because a stacked mark at 44px makes the
+wordmark unreadable), and `tst-logomark` (mark only). Each has `-white` and `-black`
+variants generated from the same alpha.
+
+The usage rules from the book are **required**, not advisory:
+
+- Full colour on **white backgrounds only**
+- White logo on **any coloured or dark background**
+- Black logo on white or light backgrounds when a neutral or formal look is needed
+- Never rotate, flip, or add effects
+
+`tst-logo-dark.png` / `tst-logo-light.png` keep their old filenames (full colour for the
+light theme, white for dark) so the header markup did not have to change everywhere.
+
+### Pattern
+
+`.brand-zigzag` / `.brand-zigzag-bottom` draw the torn navy edge that tops and tails every
+page of the deck. Used on the booking-page hero bands.
+
+### Voice
+
+Confident · Approachable · Warm · No tech jargon · Practical · Community-Rooted · Youthful
+· Exciting. Tone for the **website** is **Clear & Grounded** — that is the setting to write
+in here; the lighter, more youthful register belongs on social.
 
 Rules worth keeping if you extend the site:
 
 - **No gradient-filled text.** Headings are solid. Gradient text was tried, was unreadable, and was removed.
 - **Page heroes are an always-dark `bg-brand-950` band.** That is what gives the pages depth. Inside a hero, never use the semantic tokens (`text-ink`, `bg-surface`, `border-line`) or a `dark:` variant — they flip with the theme and vanish against the fixed dark band. Use explicit `text-white` / `text-brand-100` / `bg-white`.
-- **`text-brand-600` is not safe on white** (3.7:1). Use `text-brand-700` (6.0:1) or darker for anything under 24px.
-- **`bg-accent-600` is not safe under white text** (4.2:1). CTAs use `bg-accent-700` (5.9:1).
-- Depth comes from the tinted shadow tokens (`shadow-card`, `shadow-lift`, `shadow-hero`, `shadow-glow`), not from Tailwind's neutral greys — a grey shadow on a green-tinted surface reads as dirt.
+- **`bg-accent-600` under white text is 4.9:1** — fine for buttons and large text. For body-size green text on white use `text-accent-700` (6.5:1).
+- Depth comes from the tinted shadow tokens (`shadow-card`, `shadow-lift`, `shadow-hero`, `shadow-glow`), not from Tailwind's neutral greys — a grey shadow on a blue-tinted surface reads as dirt.
 
 ## Changing the theme colour
 
@@ -56,8 +125,8 @@ Everything visual is driven from **one block** in `src/tailwind.css`, under `THE
 
 ```css
 :root {
-  --brand-700: #185fa5;   /* change this ... */
-  --brand-800: #184e85;   /* ... and every heading, button, band and link follows */
+  --brand-700: #185fa5;   /* Deep Azure Blue — change this ... */
+  --accent-600: #208339;  /* Forest Green — ... and this, and everything follows */
 }
 ```
 
@@ -80,9 +149,10 @@ Semantic tokens (`bg-surface`, `text-ink`, `text-ink-muted`, `border-line`) flip
 
 ## How the theming/dark mode works
 
-- Light is the default. Dark applies via a `.dark` class on `<html>`.
-- An inline script in each `<head>` sets the class before first paint (no flash), reading `localStorage.tst-theme` and falling back to the OS preference.
-- The site follows the OS until the visitor clicks the toggle; after that their choice wins.
+- **Light is the default for every visitor, regardless of their OS setting.** Dark applies via a `.dark` class on `<html>` and is opt-in only.
+- An inline script in each `<head>` sets the class before first paint (no flash). It reads `localStorage.tst-theme` and applies dark **only** when that value is exactly `"dark"` — it does not consult `prefers-color-scheme`.
+- The header toggle writes the choice and it is remembered from then on. There is deliberately **no OS-change listener**: following the OS would flip a visitor into dark without them asking for it.
+- Each page ships a single `<meta name="theme-color" content="#ffffff">`. `site.js` rewrites it to `#08182a` when dark is on, so the browser chrome tracks the real theme. The old media-keyed pair (`prefers-color-scheme: light`/`dark`) was removed — on an OS in dark mode it painted the chrome navy over a light page.
 
 ## Conventions
 
@@ -100,32 +170,84 @@ Semantic tokens (`bg-surface`, `text-ink`, `text-ink-muted`, `border-line`) flip
 - **Copy tweaks**, all deliberate: "Every dollar support a kupuna" → "supports"; "Thank You to Our Sponsors and Partners" → "Mahalo to our sponsors and partners"; headings moved to sentence case. Everything else is verbatim.
 - **No cookie banner.** The old site had one because GoDaddy set analytics cookies. This build sets none — the only client storage is `localStorage.tst-theme` for the theme toggle, which is strictly necessary and needs no consent. If analytics are ever added, the banner has to come back.
 
-## Booking (the OLA hand-off)
+## Booking
 
-`for-kupuna.html#book` — "Book a Workshop in Your Community" — lists the two bookable
-services and hands off to GoDaddy Online Appointments (OLA) for the actual booking:
+The flow now lives on this site instead of handing off to GoDaddy Online Appointments,
+and it follows the live flow step for step. `assets/js/booking.js` drives all of it and
+holds the catalogue.
 
-| Service | URL |
-|---|---|
-| One-to-One Tutoring (Senior Living Centers only) | `techsavvyteens.com/for-kupuna/ola/services/in-person-tech-tutoring-4-hours-for-seniors` |
-| One-to-One Tutoring (Community Centers & Churches only) | `techsavvyteens.com/for-kupuna/ola/services/one-to-one-tutoring-community-centers` |
+```
+for-kupuna.html#book  ->  book.html   step 1: date + time  ->  step 2: location  ->  BOOK
+                                                                                       |
+                          cart drawer: coupon · totals · your details  <----------------+
+                                                    |
+                                                    v
+                          same drawer: Thank you, order ID, Add to Calendar
+```
 
-Both are 2 hrs, free. They were recovered from **`sitemap.ola.xml`** on the live site —
-worth knowing, because the booking section does **not exist in the live page's HTML**.
-Like the calendar, the slot picker, the address form and the cart, it is injected at
-runtime by GoDaddy's bundle. Fetching `/for-kupuna` and reading the markup shows nothing;
-`/for-kupuna/ola`, `/for-kupuna/ola/services` and `/for-kupuna/ola/cart` all return 404 to
-a plain request. That is why the section was missed on the first pass — the same trap as
-the blog.
+**The cart is a drawer, not a page** — same as live. It slides in from the right, holds
+the booking, the coupon field, the totals, the details form and the confirmation, and the
+header cart icon (`[data-cart-open]`) opens it from anywhere on the site. `booking.js`
+injects it into every page, so no page markup carries it.
 
-Two consequences:
+Both services are the live ones, with copy taken verbatim from the pages they replace:
 
-- **The header's cart button is a link to `#book`, not a live cart.** A basket count is
-  session state inside GoDaddy's booking engine; a static page has no way to read it. If
-  you want a real cart, the booking flow has to move onto this site (or onto a booking
-  provider with an API).
-- **Those two URLs die the day the site leaves GoDaddy.** They are the only hard
-  dependency on the old host anywhere in this build.
+| Service | Duration | Price | Staff | Add-on |
+|---|---|---|---|---|
+| One-to-One Tutoring (Senior Living Centers only) | 2 hrs | Free | Youssef Dakroub | — |
+| One-to-One Tutoring (Community Centers & Churches only) | 2 hrs | Free | Youssef Dakroub | Add additional teen — $50.00 |
+
+Only the community service has an add-on. That is not an omission — the live senior
+service page has no add-on block either.
+
+### Availability
+
+The live calendar circles only the days the mentors are rostered for; every other future
+day stays clickable and answers *"Please choose a highlighted date to see available times.
+There are no available times on this day."* That behaviour is reproduced exactly, and the
+open days come from rules rather than a feed:
+
+- `OPEN_DAYS` — Friday, Saturday, Sunday, Monday (the roster is weekend-shaped; mentors
+  are students)
+- `LEAD_DAYS` — 10 days' notice
+- `HORIZON_MONTHS` — 6 months out
+- `SLOTS` — 10:00 AM and 11:00 AM, under a "Morning" heading, labelled `(GMT-10:00) Hawaii`
+
+Hawaii does not observe DST, so `TZ_OFFSET` is a fixed −10 and the Add to Calendar links
+convert to UTC from that directly.
+
+### Two honest departures
+
+Both are stated in the UI rather than papered over:
+
+- **Availability is generated, not fetched.** What the visitor submits is a booking
+  **request**; a coordinator confirms within 3 business days.
+- **No payment is taken anywhere.** Sessions are free and the one add-on is invoiced by
+  Kaulike Academy afterwards, so "Due now" is always `$0.00`. There are no card fields on
+  this site, because a static page has nothing that could safely accept them. The coupon
+  field is present because the live cart has one; it accepts input and explains that codes
+  only apply to add-ons.
+
+Confirm Booking hands the formatted request to the mail client via a generated `mailto:`
+anchor — the same mechanism the contact form on `donate.html` uses. It is clicked from a
+detached anchor rather than assigned to `location.href` so the page does not unload and
+the thank-you panel can still render.
+
+### Notes
+
+- Cart state is `localStorage.tst-cart`; the badge is painted by `paintBadge()`.
+- **Which service is being booked survives a stripped query string.** `resolveService()`
+  reads `?service=`, then `#hash`, then `sessionStorage.tst-service` — written by a
+  delegated click handler on the service cards. Hosts that serve clean URLs (the `serve`
+  dev server included) redirect `book.html?service=community` to `/book` and drop the
+  query, which would otherwise silently fall back to the senior service.
+- **If a real backend arrives**, replace `isBookable()` (availability), the `SERVICES`
+  constant (catalogue) and `confirmBooking()` (submission). No markup changes.
+
+> The old OLA URLs (`/for-kupuna/ola/services/…`) still exist on the live GoDaddy site and
+> were the source for this copy. Nothing in this build depends on them any more. The old
+> `/ols/…` store URLs are still in Google's index but now redirect to the homepage — that
+> storefront is retired, so it was not rebuilt.
 
 ## Notes for whoever picks this up
 

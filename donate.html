@@ -6,24 +6,30 @@
 <title>Donate | Help Us Close the Gap — Tech Savvy Teens</title>
 <meta name="description" content="Every dollar supports a kupuna in need of digital access. Your donation funds stipends for our teen instructors and provides devices and internet access for kūpuna who have none.">
 <link rel="canonical" href="https://techsavvyteens.com/donate">
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0a1710" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Donate | Tech Savvy Teens">
 <meta property="og:description" content="No young leader goes unpaid. No elder goes unconnected.">
 <meta property="og:image" content="assets/images/gallery/donate-1.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="assets/images/logos/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/images/logos/tst-logo-dark.png">
-<link rel="preload" href="assets/fonts/GoogleSansFlex-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/GoogleSansFlex-normal-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="assets/images/logos/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="assets/images/logos/favicon-16.png" type="image/png" sizes="16x16">
+<link rel="icon" href="assets/images/logos/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="assets/images/logos/tst-apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/Anton-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Poppins-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Poppins-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/tailwind.css">
 <script>
+  /* Runs before first paint: marks JS as available and applies the saved theme
+     so there is no flash of the wrong colour scheme.
+
+     Light is the default for everyone, regardless of the OS setting. Dark is
+     opt-in through the header toggle and is remembered from then on. */
   (function () {
     document.documentElement.classList.add("js");
     try {
-      var s = localStorage.getItem("tst-theme");
-      if (s === "dark" || (!s && matchMedia("(prefers-color-scheme: dark)").matches)) {
+      if (localStorage.getItem("tst-theme") === "dark") {
         document.documentElement.classList.add("dark");
       }
     } catch (e) {}
@@ -38,8 +44,8 @@
 <header data-header class="sticky top-0 z-50 border-b border-transparent transition-all duration-300 data-[scrolled]:border-line data-[scrolled]:bg-surface/85 data-[scrolled]:shadow-card data-[scrolled]:backdrop-blur-xl">
   <nav aria-label="Primary" class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
     <a href="index.html" class="group flex shrink-0 items-center gap-2 rounded-xl focus:outline-none focus-visible:ring-4 focus-visible:ring-ring-brand/40">
-      <img src="assets/images/logos/tst-logo-dark.png" alt="Tech Savvy Teens" width="646" height="528" class="h-11 w-auto transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105 dark:hidden">
-      <img src="assets/images/logos/tst-logo-light.png" alt="" aria-hidden="true" width="646" height="528" class="hidden h-11 w-auto transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105 dark:block">
+      <img src="assets/images/logos/tst-logo-dark.png" alt="Tech Savvy Teens" width="900" height="247" class="h-11 w-auto transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105 dark:hidden">
+      <img src="assets/images/logos/tst-logo-light.png" alt="" aria-hidden="true" width="900" height="247" class="hidden h-11 w-auto transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105 dark:block">
     </a>
 
     <ul class="hidden items-center gap-1 lg:flex">
@@ -52,10 +58,12 @@
     </ul>
 
     <div class="flex items-center gap-2">
-      <a href="for-kupuna.html#book" class="group relative grid h-10 w-10 place-items-center rounded-full border border-line bg-surface text-ink-muted transition hover:text-brand-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-ring-brand/40" title="Book a tech session">
-        <span class="sr-only">Book a tech session</span>
+      <button type="button" data-cart-open class="group relative grid h-10 w-10 place-items-center rounded-full border border-line bg-surface text-ink-muted transition hover:text-brand-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-ring-brand/40" title="Your cart">
+        <span data-cart-label class="sr-only">Your cart is empty</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 transition-transform duration-300 group-hover:scale-110" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
-      </a>      <button type="button" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme" class="grid h-10 w-10 place-items-center rounded-full border border-line bg-surface text-ink-muted transition hover:text-brand-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-ring-brand/40">
+        <span data-cart-count hidden aria-hidden="true" class="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-accent-600 px-1 text-[11px] font-bold leading-none text-white ring-2 ring-surface">0</span>
+      </button>
+      <button type="button" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme" class="grid h-10 w-10 place-items-center rounded-full border border-line bg-surface text-ink-muted transition hover:text-brand-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-ring-brand/40">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-5 w-5 dark:hidden" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden h-5 w-5 dark:block" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
       </button>
@@ -91,8 +99,8 @@
   </div>
 
   <div class="mx-auto max-w-4xl px-4 pb-16 pt-16 text-center sm:px-6 lg:px-8 lg:pb-20 lg:pt-24">
-    <p data-reveal class="font-display text-sm font-bold uppercase tracking-[0.25em] text-brand-300 transition-all duration-700 reveal:translate-y-4 reveal:opacity-0">Help us reach our funding goal</p>
-    <h1 data-reveal data-reveal-delay="80" class="mt-4 font-display text-4xl font-extrabold leading-tight tracking-tight text-white transition-all duration-700 reveal:translate-y-6 reveal:opacity-0 sm:text-5xl lg:text-6xl">
+    <p data-reveal class="text-sm font-bold uppercase tracking-[0.25em] text-brand-300 transition-all duration-700 reveal:translate-y-4 reveal:opacity-0">Help us reach our funding goal</p>
+    <h1 data-reveal data-reveal-delay="80" class="mt-4 font-display text-4xl leading-tight text-white transition-all duration-700 reveal:translate-y-6 reveal:opacity-0 sm:text-5xl lg:text-6xl">
       Every dollar supports a kupuna in need of <span class="text-brand-300">digital access.</span>
     </h1>
     <p data-reveal data-reveal-delay="160" class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-brand-100 transition-all duration-700 reveal:translate-y-6 reveal:opacity-0">
@@ -128,8 +136,8 @@
       </div>
 
       <div class="lg:col-span-7">
-        <p data-reveal class="font-display text-sm font-bold uppercase tracking-[0.2em] text-brand-700 transition-all duration-700 reveal:translate-y-4 reveal:opacity-0 dark:text-brand-400">Join us</p>
-        <h2 id="gap" data-reveal data-reveal-delay="80" class="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink transition-all duration-700 reveal:translate-y-6 reveal:opacity-0 sm:text-4xl">Help us close the gap</h2>
+        <p data-reveal class="text-sm font-bold uppercase tracking-[0.2em] text-brand-700 transition-all duration-700 reveal:translate-y-4 reveal:opacity-0 dark:text-brand-400">Join us</p>
+        <h2 id="gap" data-reveal data-reveal-delay="80" class="mt-3 font-display text-3xl text-ink transition-all duration-700 reveal:translate-y-6 reveal:opacity-0 sm:text-4xl">Help us close the gap</h2>
         <p data-reveal data-reveal-delay="140" class="mt-5 text-lg leading-relaxed text-ink-muted transition-all duration-700 reveal:translate-y-6 reveal:opacity-0">
           Your donation funds stipends for our teen instructors and provides devices and internet access for kūpuna who have none.
         </p>
@@ -140,7 +148,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
             </span>
             <div>
-              <h3 class="font-display text-base font-extrabold text-ink">Stipends for teen instructors</h3>
+              <h3 class="text-base font-extrabold text-ink">Stipends for teen instructors</h3>
               <p class="mt-1 text-sm leading-relaxed text-ink-muted">$50 per 3-hour session means our young leaders are paid for real, skilled work — not asked to volunteer their way out of poverty.</p>
             </div>
           </li>
@@ -149,7 +157,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
             </span>
             <div>
-              <h3 class="font-display text-base font-extrabold text-ink">Devices &amp; internet for kūpuna</h3>
+              <h3 class="text-base font-extrabold text-ink">Devices &amp; internet for kūpuna</h3>
               <p class="mt-1 text-sm leading-relaxed text-ink-muted">Some kūpuna have no device and no connection at all. We close that gap so telehealth, family and services are within reach.</p>
             </div>
           </li>
@@ -158,7 +166,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M12 3 2 8l10 5 10-5-10-5z"/><path d="M6 10.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5"/></svg>
             </span>
             <div>
-              <h3 class="font-display text-base font-extrabold text-ink">Industry certifications</h3>
+              <h3 class="text-base font-extrabold text-ink">Industry certifications</h3>
               <p class="mt-1 text-sm leading-relaxed text-ink-muted">At 30 hours of service we cover a teen's IC3, Microsoft, or cybersecurity certification — a credential that outlasts the program.</p>
             </div>
           </li>
@@ -181,8 +189,8 @@
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
       <div class="lg:col-span-5">
-        <p data-reveal class="font-display text-sm font-bold uppercase tracking-[0.2em] text-brand-700 transition-all duration-700 reveal:translate-y-4 reveal:opacity-0 dark:text-brand-400">Have a question?</p>
-        <h2 id="contact-heading" data-reveal data-reveal-delay="80" class="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink transition-all duration-700 reveal:translate-y-6 reveal:opacity-0 sm:text-4xl">We'd love to hear from you</h2>
+        <p data-reveal class="text-sm font-bold uppercase tracking-[0.2em] text-brand-700 transition-all duration-700 reveal:translate-y-4 reveal:opacity-0 dark:text-brand-400">Have a question?</p>
+        <h2 id="contact-heading" data-reveal data-reveal-delay="80" class="mt-3 font-display text-3xl text-ink transition-all duration-700 reveal:translate-y-6 reveal:opacity-0 sm:text-4xl">We'd love to hear from you</h2>
         <p data-reveal data-reveal-delay="140" class="mt-5 text-lg leading-relaxed text-ink-muted transition-all duration-700 reveal:translate-y-6 reveal:opacity-0">
           Whether you're a teen ready to lead, a kupuna ready to learn, or a community partner ready to host — reach out and a TST team member will respond within 3 business days.
         </p>
@@ -196,7 +204,7 @@
               </span>
             </dt>
             <dd>
-              <p class="font-display text-base font-extrabold text-ink">Tech Savvy Teens</p>
+              <p class="text-base font-extrabold text-ink">Tech Savvy Teens</p>
               <address class="mt-1 text-ink-muted not-italic">560 North Nimitz Highway<br>Honolulu, HI, USA</address>
             </dd>
           </div>
@@ -208,7 +216,7 @@
               </span>
             </dt>
             <dd>
-              <p class="font-display text-base font-extrabold text-ink">Email us at</p>
+              <p class="text-base font-extrabold text-ink">Email us at</p>
               <p class="mt-1"><a href="mailto:support@techsavvyteens.org" class="font-semibold text-brand-700 transition hover:underline focus:outline-none focus-visible:ring-4 focus-visible:ring-ring-brand/40 dark:text-brand-300">support@techsavvyteens.org</a></p>
             </dd>
           </div>
@@ -220,7 +228,7 @@
               </span>
             </dt>
             <dd>
-              <p class="font-display text-base font-extrabold text-ink">Response time</p>
+              <p class="text-base font-extrabold text-ink">Response time</p>
               <p class="mt-1 text-ink-muted">Within 3 business days</p>
             </dd>
           </div>
@@ -229,22 +237,22 @@
 
       <div data-reveal class="transition-all duration-1000 reveal:translate-y-8 reveal:opacity-0 lg:col-span-7">
         <div class="rounded-3xl border border-line bg-surface-2 p-7 shadow-card sm:p-9">
-          <h3 class="font-display text-xl font-extrabold text-ink">Let's bring Tech Savvy Teens to your community</h3>
+          <h3 class="text-xl font-extrabold text-ink">Let's bring Tech Savvy Teens to your community</h3>
           <p class="mt-2 text-sm text-ink-muted">Fields marked with an asterisk (*) are required.</p>
 
           <!-- Static site: this posts straight to the team's inbox via the visitor's
                mail client. Swap the action for a server-side handler once one exists. -->
           <form action="mailto:support@techsavvyteens.org" method="post" enctype="text/plain" class="mt-7 space-y-5">
             <div>
-              <label for="name" class="block font-display text-sm font-bold text-ink">Name</label>
+              <label for="name" class="block text-sm font-bold text-ink">Name</label>
               <input type="text" id="name" name="name" autocomplete="name" class="mt-2 block w-full rounded-xl border border-line bg-surface px-4 py-3 text-ink placeholder:text-ink-muted/60 focus:border-brand-500 focus:outline-none focus:ring-4 focus:ring-ring-brand/25" placeholder="Your name">
             </div>
             <div>
-              <label for="email" class="block font-display text-sm font-bold text-ink">Email <span aria-hidden="true" class="text-brand-700 dark:text-brand-400">*</span><span class="sr-only">(required)</span></label>
+              <label for="email" class="block text-sm font-bold text-ink">Email <span aria-hidden="true" class="text-brand-700 dark:text-brand-400">*</span><span class="sr-only">(required)</span></label>
               <input type="email" id="email" name="email" required autocomplete="email" class="mt-2 block w-full rounded-xl border border-line bg-surface px-4 py-3 text-ink placeholder:text-ink-muted/60 focus:border-brand-500 focus:outline-none focus:ring-4 focus:ring-ring-brand/25" placeholder="you@example.com">
             </div>
             <div>
-              <label for="message" class="block font-display text-sm font-bold text-ink">Message</label>
+              <label for="message" class="block text-sm font-bold text-ink">Message</label>
               <textarea id="message" name="message" rows="5" class="mt-2 block w-full rounded-xl border border-line bg-surface px-4 py-3 text-ink placeholder:text-ink-muted/60 focus:border-brand-500 focus:outline-none focus:ring-4 focus:ring-ring-brand/25" placeholder="Tell us how we can help — or how you'd like to help."></textarea>
             </div>
             <div class="flex flex-wrap gap-3">
@@ -265,7 +273,7 @@
 <!-- ══════════════════════════════════════ stay connected ══════════════════ -->
 <section aria-labelledby="stay" class="border-t border-line bg-surface-2 py-16">
   <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-    <h2 id="stay" data-reveal class="font-display text-2xl font-extrabold tracking-tight text-ink transition-all duration-700 reveal:translate-y-6 reveal:opacity-0 sm:text-3xl">Stay connected</h2>
+    <h2 id="stay" data-reveal class="font-display text-2xl text-ink transition-all duration-700 reveal:translate-y-6 reveal:opacity-0 sm:text-3xl">Stay connected</h2>
     <p data-reveal data-reveal-delay="100" class="mt-3 text-ink-muted transition-all duration-700 reveal:translate-y-6 reveal:opacity-0">
       Follow the program, share it with a kupuna who needs it, or send it to a teen who's ready to lead.
     </p>
@@ -283,16 +291,17 @@
   <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
     <div class="grid gap-12 lg:grid-cols-12">
       <div class="lg:col-span-5">
-        <img src="assets/images/logos/tst-logo-dark.png" alt="Tech Savvy Teens" width="646" height="528" loading="lazy" class="h-14 w-auto dark:hidden">
-        <img src="assets/images/logos/tst-logo-light.png" alt="" aria-hidden="true" width="646" height="528" loading="lazy" class="hidden h-14 w-auto dark:block">
-        <p class="mt-5 max-w-sm font-display text-lg font-bold text-ink">Bridging the digital divide.</p>
+        <img src="assets/images/logos/tst-logo-dark.png" alt="Tech Savvy Teens" width="900" height="247" loading="lazy" class="h-14 w-auto dark:hidden">
+        <img src="assets/images/logos/tst-logo-light.png" alt="" aria-hidden="true" width="900" height="247" loading="lazy" class="hidden h-14 w-auto dark:block">
+        <p class="mt-5 font-display text-2xl text-brand-700 dark:text-brand-300">Help. Connect. Empower.</p>
+        <p class="mt-3 max-w-sm text-lg font-bold text-ink">Bridging the digital divide.</p>
         <p class="mt-3 max-w-sm text-sm leading-relaxed text-ink-muted">
           Tech Savvy Teens is part of an afterschool workforce readiness program managed by Kaulike Academy, a 501(c) nonprofit organization based in Honolulu, Hawaiʻi.
         </p>
       </div>
       <nav aria-label="Footer" class="grid gap-8 sm:grid-cols-3 lg:col-span-7">
         <div>
-          <h2 class="font-display text-sm font-extrabold uppercase tracking-widest text-ink">Program</h2>
+          <h2 class="font-display text-sm uppercase tracking-widest text-ink">Program</h2>
           <ul class="mt-4 space-y-3 text-sm">
             <li><a href="index.html" class="text-ink-muted transition hover:text-brand-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-ring-brand/40 dark:hover:text-brand-300">Home</a></li>
             <li><a href="about.html" class="text-ink-muted transition hover:text-brand-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-ring-brand/40 dark:hover:text-brand-300">About</a></li>
@@ -302,7 +311,7 @@
           </ul>
         </div>
         <div>
-          <h2 class="font-display text-sm font-extrabold uppercase tracking-widest text-ink">Support</h2>
+          <h2 class="font-display text-sm uppercase tracking-widest text-ink">Support</h2>
           <ul class="mt-4 space-y-3 text-sm">
             <li><a href="donate.html" class="text-ink-muted transition hover:text-brand-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-ring-brand/40 dark:hover:text-brand-300">Donate</a></li>
             <li><a href="https://www.paypal.com/ncp/payment/7WJ6U6Y5WUK4A" target="_blank" rel="noopener noreferrer" class="text-ink-muted transition hover:text-brand-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-ring-brand/40 dark:hover:text-brand-300">Support TST</a></li>
@@ -311,7 +320,7 @@
           </ul>
         </div>
         <div>
-          <h2 class="font-display text-sm font-extrabold uppercase tracking-widest text-ink">Contact</h2>
+          <h2 class="font-display text-sm uppercase tracking-widest text-ink">Contact</h2>
           <address class="mt-4 space-y-3 text-sm not-italic text-ink-muted">
             <p>560 North Nimitz Highway<br>Honolulu, HI, USA</p>
             <p><a href="mailto:support@techsavvyteens.org" class="font-semibold text-brand-700 transition hover:underline focus:outline-none focus-visible:ring-4 focus-visible:ring-ring-brand/40 dark:text-brand-300">support@techsavvyteens.org</a></p>
@@ -332,5 +341,6 @@
 </button>
 
 <script src="assets/js/site.js" defer></script>
+<script src="assets/js/booking.js" defer></script>
 </body>
 </html>

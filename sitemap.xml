@@ -20,6 +20,13 @@
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  <!-- Only the booking entry point is listed. cart, checkout and
+       booking-confirmed are per-visitor states and carry noindex. -->
+  <url>
+    <loc>https://techsavvyteens.com/book.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
   <url>
     <loc>https://techsavvyteens.com/blog.html</loc>
     <changefreq>weekly</changefreq>

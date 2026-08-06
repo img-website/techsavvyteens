@@ -6,9 +6,9 @@
    Everything visual is driven from this file. No stylesheet is hand-written
    anywhere else; pages are built purely from Tailwind utility classes.
 
-   To re-skin the ENTIRE website, edit only the ramps in the
-   "THEME COLOR CONTROL" block below. Every page, component, gradient,
-   button, badge and both light/dark themes derive from those tokens.
+   Colour, type and the zigzag pattern all come from the Tech Savvy Teens
+   Brand Guidelines 2026 (Kaulike Academy). To re-skin, edit only the ramps
+   in the "THEME COLOR CONTROL" block below.
    ========================================================================= */
 
 /* Dark mode is class-driven (.dark on <html>) so the user can override the
@@ -25,35 +25,80 @@
 
 
 /* ------------------------------------------------------------------ fonts
-   Google Sans Flex — Google's brand typeface, released under the SIL Open Font
-   Licence 1.1 in Nov 2025, so it is free for commercial use. Self-hosted from
-   assets/fonts (no runtime request to Google).
+   The brand book specifies exactly two faces:
 
-   Flex, not plain "Google Sans": the static family stops at weight 700, and the
-   headings here run at 800. Flex is variable across wght 1–1000, so one file
-   covers display and body, and its opsz axis adapts the letterforms to size.
+     ANTON    — Headlines. Regular, all caps.
+     POPPINS  — H2 and body copy. Bold and Regular.
 
-   The latin subset carries the ʻokina (U+02BB); latin-ext carries the macrons
-   (ā ē ī ō ū) — both are required for Hawaiian and both are loaded. */
+   Both are SIL Open Font Licence 1.1 and are self-hosted from assets/fonts,
+   so no request ever leaves for fonts.gstatic.com.
+
+   Anton ships a single weight (400) by design — it is a display face and must
+   never be faux-bolded. Poppins carries 400 and 700, which covers "Bold,
+   Regular" from the book.
+
+   Two subsets are loaded for each face because Hawaiian needs both: the latin
+   subset carries the ʻokina (U+02BB) and latin-ext carries the macrons
+   (ā ē ī ō ū). Dropping either one breaks "kūpuna" or "Hawaiʻi".
+
+   Paths are relative to the BUILT css at assets/css/tailwind.css, not to this
+   source file. */
 @font-face {
-  font-family: "Google Sans Flex";
+  font-family: "Anton";
   font-style: normal;
-  font-weight: 100 1000;
+  font-weight: 400;
   font-display: swap;
-  /* Relative to the BUILT css at assets/css/tailwind.css — not to this source
-     file. `../assets/fonts/` resolved to /assets/assets/fonts/ and silently
-     404'd, so the site ran on the system fallback font. */
-  src: url("../fonts/GoogleSansFlex-normal-latin.woff2") format("woff2");
+  src: url("../fonts/Anton-400-latin.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
     U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: "Google Sans Flex";
+  font-family: "Anton";
   font-style: normal;
-  font-weight: 100 1000;
+  font-weight: 400;
   font-display: swap;
-  src: url("../fonts/GoogleSansFlex-normal-latin-ext.woff2") format("woff2");
+  src: url("../fonts/Anton-400-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/Poppins-400-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/Poppins-400-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/Poppins-700-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/Poppins-700-latin-ext.woff2") format("woff2");
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
     U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
     U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
@@ -62,75 +107,86 @@
 
 /* ================================================================
    THEME COLOR CONTROL
-   Change these ramps (+ the light/dark surface sets below) and the
-   whole site re-skins. Nothing else needs to be touched.
 
-   The palette IS the logo. The Tech Savvy Teens mark is two-tone —
-   a GREEN figure and arch (and the "TECHSAVVY" wordmark), plus a BLUE
-   second figure and arch. Green leads (~90% of the UI); blue is the
-   secondary and carries the conversion CTAs. Nothing else.
+   Straight from the brand book's colour page.
 
-   Hues were sampled off the roll-up banner at full resolution
-   (IMG_7026): green lands at hue 116, blue at hue 200. The photo is of
-   a printed banner under indoor light, so it reads washed out
-   (#71B26D / #63A2C0) — those sit at the 400 step here, with the ramps
-   built around them at the same hues.
+     PRIMARY    White #FFFFFF · Forest Green #208339 · Deep Azure Blue #185FA5
+     SECONDARY  Cerulean #01718D · Vivid Azure #2AC7FB · Malachite #3ACF5F
+
+   Deep Azure Blue leads. It is the colour of the logomark itself, of every
+   band and header in the brand deck, and of the old site's chrome — so it
+   carries the structure here: heroes, headers, links, primary buttons.
+
+   Forest Green is the co-primary. In the mark it sets "TECHSAVVY", and in the
+   deck it sets the section headings — so it carries emphasis and conversion
+   here: highlighted words, "Free" badges, the donate and apply CTAs.
+
+   Both ramps are built at the exact hue of their brand colour, with the brand
+   hex itself pinned to a named step (blue at 700, green at 600) so the
+   published value appears literally on the page and is never approximated.
    ================================================================ */
 :root {
-  /* Green — the logo's primary (wordmark + main arch). hue ~116 */
-  --brand-50:  #f1f9f0;
-  --brand-100: #ddf0db;
-  --brand-200: #bce2b9;
-  --brand-300: #93cf8f;
-  --brand-400: #71b26d;   /* sampled off the banner */
-  --brand-500: #4f9a4b;
-  --brand-600: #3c7d39;
-  --brand-700: #32642f;   /* 7.0:1 on white — safe for text at any size */
-  --brand-800: #2b512a;
-  --brand-900: #254324;
-  --brand-950: #10250f;
+  /* Deep Azure Blue — hue 210. Brand hex pinned at 700. */
+  --brand-50:  #eff6fd;
+  --brand-100: #dbeafd;
+  --brand-200: #bfdcfb;
+  --brand-300: #93c6f8;
+  --brand-400: #60a8f2;
+  --brand-500: #3b89e6;
+  --brand-600: #276cd0;
+  --brand-700: #185fa5;   /* Deep Azure Blue — 6.6:1 on white */
+  --brand-800: #1a4f86;
+  --brand-900: #1b446e;
+  --brand-950: #102a46;
 
-  /* Blue — the logo's second figure. Secondary + conversion CTAs. hue ~200 */
-  --accent-50:  #f0f8fb;
-  --accent-100: #daeef6;
-  --accent-200: #b9e0ee;
-  --accent-300: #8bcbe2;
-  --accent-400: #63a2c0;   /* sampled off the banner */
-  --accent-500: #3d8cae;
-  --accent-600: #2f7090;
-  --accent-700: #2a5c76;   /* 7.3:1 under white — safe for button labels */
-  --accent-800: #294d61;
-  --accent-900: #264152;
-  --accent-950: #142936;
+  /* Forest Green — hue 135. Brand hex pinned at 600. */
+  --accent-50:  #f0faf2;
+  --accent-100: #d9f3e0;
+  --accent-200: #b5e6c3;
+  --accent-300: #83d29b;
+  --accent-400: #4cb66f;
+  --accent-500: #2a9b4f;
+  --accent-600: #208339;   /* Forest Green — 4.9:1 on white */
+  --accent-700: #1b6b30;   /* 6.5:1 on white — safe for body-size text */
+  --accent-800: #185527;
+  --accent-900: #154622;
+  --accent-950: #08260f;
+
+  /* ---- Secondary palette ----
+     Used sparingly and literally: accents, highlights, chart-style fills and
+     the "always free" badges. These are flat brand colours, not ramps. */
+  --cerulean:   #01718d;   /* deep teal — the deck's alternate dark band */
+  --azure:      #2ac7fb;   /* vivid azure — highlights on dark only */
+  --malachite:  #3acf5f;   /* vivid green — success, "Free", confirmations */
 
   /* ---- Light theme surfaces + text (the default) ---- */
   --ui-surface:   #ffffff;
-  --ui-surface-2: #f4f9f3;
-  --ui-surface-3: #e7f1e5;
-  --ui-ink:       #12211a;
-  --ui-ink-muted: #4b6357;   /* 6.4:1 on white */
-  --ui-line:      #dde8db;
+  --ui-surface-2: #f3f8fd;
+  --ui-surface-3: #e5eefa;
+  --ui-ink:       #0f2233;
+  --ui-ink-muted: #4a6076;   /* 6.6:1 on white */
+  --ui-line:      #dbe7f3;
   --ui-ring:      var(--brand-600);
 }
 
 .dark {
   /* ---- Dark theme surfaces + text ---- */
-  --ui-surface:   #0a1710;
-  --ui-surface-2: #10241a;
-  --ui-surface-3: #183324;
-  --ui-ink:       #eaf6ee;
-  --ui-ink-muted: #a6c4b0;
-  --ui-line:      #244433;
+  --ui-surface:   #08182a;
+  --ui-surface-2: #0e2338;
+  --ui-surface-3: #163149;
+  --ui-ink:       #e8f1fa;
+  --ui-ink-muted: #a3bcd4;
+  --ui-line:      #1f3b55;
   --ui-ring:      var(--brand-400);
 }
 
 
 /* ------------------------------------------------------------ theme tokens */
 @theme inline {
-  /* One variable family does both roles; its opsz axis handles the display /
-     body distinction that two separate faces used to. */
-  --font-display: "Google Sans Flex", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Google Sans Flex", ui-sans-serif, system-ui, sans-serif;
+  /* Anton for headlines, Poppins for H2 and everything else — exactly the
+     split the brand book draws. */
+  --font-display: "Anton", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
 
   --color-brand-50:  var(--brand-50);
   --color-brand-100: var(--brand-100);
@@ -156,17 +212,9 @@
   --color-accent-900: var(--accent-900);
   --color-accent-950: var(--accent-950);
 
-  --color-leaf-50:  var(--leaf-50);
-  --color-leaf-100: var(--leaf-100);
-  --color-leaf-200: var(--leaf-200);
-  --color-leaf-300: var(--leaf-300);
-  --color-leaf-400: var(--leaf-400);
-  --color-leaf-500: var(--leaf-500);
-  --color-leaf-600: var(--leaf-600);
-  --color-leaf-700: var(--leaf-700);
-  --color-leaf-800: var(--leaf-800);
-  --color-leaf-900: var(--leaf-900);
-  --color-leaf-950: var(--leaf-950);
+  --color-cerulean:  var(--cerulean);
+  --color-azure:     var(--azure);
+  --color-malachite: var(--malachite);
 
   /* Semantic tokens — these flip automatically between light and dark. */
   --color-surface:   var(--ui-surface);
@@ -178,14 +226,14 @@
   --color-ring-brand: var(--ui-ring);
 
   /* ------------------------------------------------------------ depth
-     Tinted, layered shadows. A green-tinted shadow on a green-tinted
-     surface reads as depth; a neutral grey one reads as dirt. */
-  --shadow-soft: 0 1px 2px -1px rgb(18 33 26 / 0.08), 0 2px 6px -2px rgb(18 33 26 / 0.06);
-  --shadow-card: 0 2px 4px -2px rgb(18 33 26 / 0.10), 0 8px 20px -6px rgb(18 33 26 / 0.12);
-  --shadow-lift: 0 8px 16px -8px rgb(18 33 26 / 0.18), 0 20px 40px -12px rgb(18 33 26 / 0.20);
-  --shadow-hero: 0 24px 60px -20px rgb(18 33 26 / 0.30), 0 8px 24px -12px rgb(18 33 26 / 0.18);
-  --shadow-glow: 0 10px 30px -8px rgb(60 125 57 / 0.45);
-  --shadow-glow-accent: 0 10px 30px -8px rgb(47 112 144 / 0.45);
+     Tinted, layered shadows. A blue-tinted shadow on a blue-tinted surface
+     reads as depth; a neutral grey one reads as dirt. */
+  --shadow-soft: 0 1px 2px -1px rgb(15 34 51 / 0.08), 0 2px 6px -2px rgb(15 34 51 / 0.06);
+  --shadow-card: 0 2px 4px -2px rgb(15 34 51 / 0.10), 0 8px 20px -6px rgb(15 34 51 / 0.12);
+  --shadow-lift: 0 8px 16px -8px rgb(15 34 51 / 0.18), 0 20px 40px -12px rgb(15 34 51 / 0.20);
+  --shadow-hero: 0 24px 60px -20px rgb(15 34 51 / 0.30), 0 8px 24px -12px rgb(15 34 51 / 0.18);
+  --shadow-glow: 0 10px 30px -8px rgb(24 95 165 / 0.45);
+  --shadow-glow-accent: 0 10px 30px -8px rgb(32 131 57 / 0.45);
 
   /* ------------------------------------------------------- animations */
   --animate-blob: blob 18s ease-in-out infinite;
@@ -248,6 +296,51 @@
     to   { stroke-dashoffset: 0; }
   }
 }
+
+
+/* ------------------------------------------------------------ headline face
+   Anton is a condensed display face drawn at a single weight. Tailwind's
+   font-weight utilities are all over the existing markup, so rather than strip
+   every one of them we neutralise them here: anything set in Anton renders at
+   400 and in caps, which is the only way the brand book permits it. This also
+   stops the browser synthesising a fake bold, which smears the letterforms.
+
+   Anton also sets very tight by default and has a large cap height, so it gets
+   a touch of letter-spacing and a tighter line-height to sit correctly. */
+.font-display {
+  font-weight: 400 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1.08;
+}
+
+/* Anton has no lowercase in use and no italic — guard against both. */
+.font-display em,
+.font-display i {
+  font-style: normal;
+}
+
+
+/* --------------------------------------------------------- brand pattern
+   The zigzag band that tops and tails every page of the brand deck. Applied
+   as a background image so it can sit on any element without extra markup.
+
+   `.brand-zigzag` draws the torn top edge in the darker navy over whatever
+   the element's own background is; use it on a `bg-brand-700` strip to get
+   the deck's exact two-tone band. */
+.brand-zigzag {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='16' viewBox='0 0 48 16' preserveAspectRatio='none'%3E%3Cpath d='M0 0h48v6L36 16 24 6 12 16 0 6Z' fill='%23102a46'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: top center;
+  background-size: 48px 16px;
+}
+.brand-zigzag-bottom {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='16' viewBox='0 0 48 16' preserveAspectRatio='none'%3E%3Cpath d='M0 16h48v-6L36 0 24 10 12 0 0 10Z' fill='%23102a46'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: bottom center;
+  background-size: 48px 16px;
+}
+
 
 /* Everyone who asked their OS to calm things down gets a calm site. */
 @media (prefers-reduced-motion: reduce) {
