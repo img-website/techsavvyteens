@@ -2,7 +2,7 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "tst-site",
+      "name": "techsavvyteens",
       "runtimeExecutable": "npx",
       "runtimeArgs": ["--yes", "serve", "--no-clipboard", "-l", "4321", "."],
       "port": 4321

@@ -126,57 +126,62 @@
    published value appears literally on the page and is never approximated.
    ================================================================ */
 :root {
-  /* Deep Azure Blue — hue 210. Brand hex pinned at 700. */
-  --brand-50:  #eff6fd;
-  --brand-100: #dbeafd;
-  --brand-200: #bfdcfb;
-  --brand-300: #93c6f8;
-  --brand-400: #60a8f2;
-  --brand-500: #3b89e6;
-  --brand-600: #276cd0;
-  --brand-700: #185fa5;   /* Deep Azure Blue — 6.6:1 on white */
-  --brand-800: #1a4f86;
-  --brand-900: #1b446e;
-  --brand-950: #102a46;
+  /* Forest Green — hue 135. NOW THE PRIMARY. It leads the structure: heroes,
+     headers, links, primary buttons. Brand hex pinned at 600. */
+  --brand-50:  #f0faf2;
+  --brand-100: #d9f3e0;
+  --brand-200: #b5e6c3;
+  --brand-300: #83d29b;
+  --brand-400: #4cb66f;
+  --brand-500: #2a9b4f;
+  --brand-600: #208339;   /* Forest Green — 4.8:1 on white */
+  --brand-700: #1b6b30;   /* 6.6:1 on white — safe for body-size text */
+  --brand-800: #185527;
+  --brand-900: #154622;
+  --brand-950: #08260f;   /* near-black forest — dark hero/CTA bands */
 
-  /* Forest Green — hue 135. Brand hex pinned at 600. */
-  --accent-50:  #f0faf2;
-  --accent-100: #d9f3e0;
-  --accent-200: #b5e6c3;
-  --accent-300: #83d29b;
-  --accent-400: #4cb66f;
-  --accent-500: #2a9b4f;
-  --accent-600: #208339;   /* Forest Green — 4.9:1 on white */
-  --accent-700: #1b6b30;   /* 6.5:1 on white — safe for body-size text */
-  --accent-800: #185527;
-  --accent-900: #154622;
-  --accent-950: #08260f;
+  /* Earth Brown — hue 30. The warm co-primary. It carries emphasis and
+     conversion: highlighted words, "$50" and badge chips, the donate and apply
+     CTAs. Warm brown pops against the green structure. Brand hex pinned at 700. */
+  --accent-50:  #faf5ef;
+  --accent-100: #f3e7d8;
+  --accent-200: #e7cdb0;
+  --accent-300: #d6ab80;
+  --accent-400: #c08650;
+  --accent-500: #a66a34;
+  --accent-600: #8a5427;   /* 6.2:1 on white — safe for white-text badges */
+  --accent-700: #6f4318;   /* Earth Brown — 8.4:1 on white — safe for text & buttons */
+  --accent-800: #5a3714;
+  --accent-900: #4a2f14;
+  --accent-950: #2a1a0b;   /* espresso — deep warm bands */
 
   /* ---- Secondary palette ----
      Used sparingly and literally: accents, highlights, chart-style fills and
-     the "always free" badges. These are flat brand colours, not ramps. */
-  --cerulean:   #01718d;   /* deep teal — the deck's alternate dark band */
-  --azure:      #2ac7fb;   /* vivid azure — highlights on dark only */
+     the "always free" badges. These are flat colours, not ramps. */
+  --cerulean:   #0f6b4e;   /* deep pine — the alternate dark band */
+  --azure:      #d9a441;   /* warm gold — highlights on dark only */
   --malachite:  #3acf5f;   /* vivid green — success, "Free", confirmations */
 
-  /* ---- Light theme surfaces + text (the default) ---- */
+  /* ---- Light theme surfaces + text (the default) ----
+     Warm neutrals with the blue tint removed, so green + brown lead cleanly. */
   --ui-surface:   #ffffff;
-  --ui-surface-2: #f3f8fd;
-  --ui-surface-3: #e5eefa;
-  --ui-ink:       #0f2233;
-  --ui-ink-muted: #4a6076;   /* 6.6:1 on white */
-  --ui-line:      #dbe7f3;
+  --ui-surface-2: #f7f4ee;
+  --ui-surface-3: #efe9df;
+  --ui-ink:       #26201a;
+  --ui-ink-muted: #5f5648;   /* 7.2:1 on white */
+  --ui-line:      #e6dfd2;
   --ui-ring:      var(--brand-600);
 }
 
 .dark {
-  /* ---- Dark theme surfaces + text ---- */
-  --ui-surface:   #08182a;
-  --ui-surface-2: #0e2338;
-  --ui-surface-3: #163149;
-  --ui-ink:       #e8f1fa;
-  --ui-ink-muted: #a3bcd4;
-  --ui-line:      #1f3b55;
+  /* ---- Dark theme surfaces + text ----
+     Warm green-charcoal, so dark mode matches the green + brown palette. */
+  --ui-surface:   #0d1410;
+  --ui-surface-2: #141d16;
+  --ui-surface-3: #1e2a20;
+  --ui-ink:       #eef2ea;
+  --ui-ink-muted: #b3c2b0;
+  --ui-line:      #29352a;
   --ui-ring:      var(--brand-400);
 }
 
@@ -226,14 +231,14 @@
   --color-ring-brand: var(--ui-ring);
 
   /* ------------------------------------------------------------ depth
-     Tinted, layered shadows. A blue-tinted shadow on a blue-tinted surface
-     reads as depth; a neutral grey one reads as dirt. */
-  --shadow-soft: 0 1px 2px -1px rgb(15 34 51 / 0.08), 0 2px 6px -2px rgb(15 34 51 / 0.06);
-  --shadow-card: 0 2px 4px -2px rgb(15 34 51 / 0.10), 0 8px 20px -6px rgb(15 34 51 / 0.12);
-  --shadow-lift: 0 8px 16px -8px rgb(15 34 51 / 0.18), 0 20px 40px -12px rgb(15 34 51 / 0.20);
-  --shadow-hero: 0 24px 60px -20px rgb(15 34 51 / 0.30), 0 8px 24px -12px rgb(15 34 51 / 0.18);
-  --shadow-glow: 0 10px 30px -8px rgb(24 95 165 / 0.45);
-  --shadow-glow-accent: 0 10px 30px -8px rgb(32 131 57 / 0.45);
+     Tinted, layered shadows. A warm-tinted shadow on a warm surface reads as
+     depth; a neutral grey one reads as dirt. */
+  --shadow-soft: 0 1px 2px -1px rgb(20 28 18 / 0.08), 0 2px 6px -2px rgb(20 28 18 / 0.06);
+  --shadow-card: 0 2px 4px -2px rgb(20 28 18 / 0.10), 0 8px 20px -6px rgb(20 28 18 / 0.12);
+  --shadow-lift: 0 8px 16px -8px rgb(20 28 18 / 0.18), 0 20px 40px -12px rgb(20 28 18 / 0.20);
+  --shadow-hero: 0 24px 60px -20px rgb(20 28 18 / 0.30), 0 8px 24px -12px rgb(20 28 18 / 0.18);
+  --shadow-glow: 0 10px 30px -8px rgb(32 131 57 / 0.45);
+  --shadow-glow-accent: 0 10px 30px -8px rgb(138 84 39 / 0.45);
 
   /* ------------------------------------------------------- animations */
   --animate-blob: blob 18s ease-in-out infinite;
@@ -325,17 +330,17 @@
    The zigzag band that tops and tails every page of the brand deck. Applied
    as a background image so it can sit on any element without extra markup.
 
-   `.brand-zigzag` draws the torn top edge in the darker navy over whatever
+   `.brand-zigzag` draws the torn top edge in the darker forest over whatever
    the element's own background is; use it on a `bg-brand-700` strip to get
    the deck's exact two-tone band. */
 .brand-zigzag {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='16' viewBox='0 0 48 16' preserveAspectRatio='none'%3E%3Cpath d='M0 0h48v6L36 16 24 6 12 16 0 6Z' fill='%23102a46'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='16' viewBox='0 0 48 16' preserveAspectRatio='none'%3E%3Cpath d='M0 0h48v6L36 16 24 6 12 16 0 6Z' fill='%2308260f'/%3E%3C/svg%3E");
   background-repeat: repeat-x;
   background-position: top center;
   background-size: 48px 16px;
 }
 .brand-zigzag-bottom {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='16' viewBox='0 0 48 16' preserveAspectRatio='none'%3E%3Cpath d='M0 16h48v-6L36 0 24 10 12 0 0 10Z' fill='%23102a46'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='16' viewBox='0 0 48 16' preserveAspectRatio='none'%3E%3Cpath d='M0 16h48v-6L36 0 24 10 12 0 0 10Z' fill='%2308260f'/%3E%3C/svg%3E");
   background-repeat: repeat-x;
   background-position: bottom center;
   background-size: 48px 16px;
