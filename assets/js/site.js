@@ -31,7 +31,7 @@
     // used to carry would have painted the chrome navy over a light page.
     function syncChrome(isDark) {
       var meta = document.querySelector('meta[name="theme-color"]');
-      if (meta) meta.setAttribute("content", isDark ? "#08182a" : "#ffffff");
+      if (meta) meta.setAttribute("content", isDark ? "#0d1410" : "#ffffff");
     }
 
     function apply(mode) {

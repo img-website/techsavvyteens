@@ -347,6 +347,16 @@
 }
 
 
+/* Tailwind v4's reset gives buttons `cursor: default`; this site's design
+   expects the classic hand on anything clickable. Restore it for enabled
+   buttons and role="button" elements — disabled controls keep the default
+   (and any `disabled:cursor-not-allowed` utility still wins). */
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]) {
+  cursor: pointer;
+}
+
+
 /* Everyone who asked their OS to calm things down gets a calm site. */
 @media (prefers-reduced-motion: reduce) {
   *,
